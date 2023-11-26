@@ -5,12 +5,12 @@ import { useState } from "react";
 interface IProps {
     access_token: string;
     getData: () => Promise<void>;
-    isCreateModalOpen: boolean;
-    setIsCreateModalOpen: (v: boolean) => void;
+    isUpdateModalOpen: boolean;
+    setIsUpdateModalOpen: (v: boolean) => void;
 }
 
-const CreateUserModal = (props: IProps)=> {
-    const { access_token, getData, isCreateModalOpen, setIsCreateModalOpen  } = props;
+const UpdateUserModal = (props: IProps)=> {
+    const { access_token, getData, isUpdateModalOpen, setIsUpdateModalOpen  } = props;
 
 
     const [name, setName] = useState('');
@@ -49,11 +49,11 @@ const CreateUserModal = (props: IProps)=> {
             })
         }
 
-        setIsCreateModalOpen(false);
+        setIsUpdateModalOpen(false);
     };
 
     const handleCloseCreateModal = () => {
-        setIsCreateModalOpen(false);
+        setIsUpdateModalOpen(false);
         setName("");
         setEmail("")
         setPassword("")
@@ -66,8 +66,8 @@ const CreateUserModal = (props: IProps)=> {
 
     return(
         <Modal 
-            title="Add New User" 
-            open={isCreateModalOpen} 
+            title="Update a User" 
+            open={isUpdateModalOpen} 
             onOk={handleOk} 
             onCancel={()=>handleCloseCreateModal()}
             maskClosable={false}
@@ -128,4 +128,4 @@ const CreateUserModal = (props: IProps)=> {
     )
 };
 
-export default CreateUserModal;
+export default UpdateUserModal;

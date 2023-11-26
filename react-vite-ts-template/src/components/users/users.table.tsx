@@ -4,6 +4,7 @@ import { Button, Table} from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import { UserAddOutlined } from '@ant-design/icons'
 import CreateUserModal from './create.user.modal';
+import UpdateUserModal from './update.user.modal';
 
 
 interface IUsers {
@@ -21,7 +22,7 @@ const UsersTable = () => {
 
     const [listUsers, setListUsers] =useState([]);
     const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
-    
+    const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
     
     const access_token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0b2tlbiBsb2dpbiIsImlzcyI6ImZyb20gc2VydmVyIiwiX2lkIjoiNjU0NWYyNGI3ZjYwZDIyZDc3NDJkNzJiIiwiZW1haWwiOiJhZG1pbkBnbWFpbC5jb20iLCJhZGRyZXNzIjoiVmlldE5hbSIsImlzVmVyaWZ5Ijp0cnVlLCJuYW1lIjoiSSdtIGFkbWluIiwidHlwZSI6IlNZU1RFTSIsInJvbGUiOiJBRE1JTiIsImdlbmRlciI6Ik1BTEUiLCJhZ2UiOjY5LCJpYXQiOjE3MDA5ODU0NzEsImV4cCI6MTc4NzM4NTQ3MX0.kjEQ762QyA4VrUGzOO5SMEpVijwcjNFcxPm7NqDXZdI"
 
@@ -76,6 +77,15 @@ const UsersTable = () => {
         {
             title: "Role",
             dataIndex: "role"
+        },
+        {
+            title: "Action",
+            render: (value, record) => {
+                return (<div>
+                    <button onClick={()=>{
+                    console.log(">>>>>>>>>>>>>>>>>> " + record)
+                    setIsUpdateModalOpen(true)}}>Edit</button></div>)
+            }
         }
     ]
 
@@ -99,6 +109,12 @@ const UsersTable = () => {
                 getData={getData}
                 isCreateModalOpen={isCreateModalOpen}
                 setIsCreateModalOpen={setIsCreateModalOpen}
+            />
+            <UpdateUserModal 
+                access_token={access_token}
+                getData={getData}
+                isUpdateModalOpen={isUpdateModalOpen}
+                setIsUpdateModalOpen={setIsUpdateModalOpen}
             />
         </div>
     )
