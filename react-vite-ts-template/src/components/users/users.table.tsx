@@ -19,7 +19,7 @@ const UsersTable = () => {
 
     const [listUsers, setListUsers] =useState([]);
     // const [users, setUsers] =useState<IUsers[]>([]);
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -57,7 +57,7 @@ const UsersTable = () => {
             })
         }
 
-        setIsModalOpen(false);
+        setIsCreateModalOpen(false);
     };
 
     const getData = async() =>{
@@ -113,7 +113,7 @@ const UsersTable = () => {
     ]
 
     const handleCloseCreateModal = () => {
-        setIsModalOpen(false);
+        setIsCreateModalOpen(false);
         setName("");
         setEmail("")
         setPassword("")
@@ -129,7 +129,7 @@ const UsersTable = () => {
             <div className='add_new'>
                 <h2>Table User</h2>
                 <div>
-                <Button type="primary" icon={<UserAddOutlined />}  onClick={()=>setIsModalOpen(true)}>Add New</Button>
+                <Button type="primary" icon={<UserAddOutlined />}  onClick={()=>setIsCreateModalOpen(true)}>Add New</Button>
                 </div>
                 
             </div>
@@ -141,7 +141,7 @@ const UsersTable = () => {
             />
             <Modal 
                 title="Add New User" 
-                open={isModalOpen} 
+                open={isCreateModalOpen} 
                 onOk={handleOk} 
                 onCancel={()=>handleCloseCreateModal()}
                 maskClosable={false}
